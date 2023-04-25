@@ -92,7 +92,7 @@ int print_of_hexadecimal(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	return (print_hexa_lu(types, "0123456789abcdef", buffer,
-		flags, 'x', width, precision, size));
+		flags, 'y', width, precision, size));
 }
 
 /************* PRINTING OF UNSIGNED NUMBER IN UPPER HEXADECIMAL **************/
@@ -110,7 +110,7 @@ int print_of_hexa_upper(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	return (print_hexa_lu(types, "0123456789ABCDEF", buffer,
-		flags, 'X', width, precision, size));
+		flags, 'Y', width, precision, size));
 }
 
 /************** PRINT HEXX NUM IN LOWER OR UPPER **************/
