@@ -156,5 +156,5 @@ int print_hexa_lu(va_list types, char map_to[], char buffer[],
 
 	k++;
 
-	return (write_the_unsgnd(0, k, buffer, flags, width, precision, size));
+	return (write_the_unsigned(0, k, buffer, flags, width, precision, size));
 }
