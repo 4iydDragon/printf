@@ -1,63 +1,66 @@
-#include <stdio.h>
-#include <stdarg.h>
+#include "main.h"
+
+void print_buffer(char buffer[], int *buff_ind);
 
 /**
- * _printf - Custom implementation of printf function
- * @format: Format string
- * Return: Number of characters printed (excluding null byte)
+ * _printf - Printf function
+ * @format: format.
+ * Return: Printed chars.
  */
 int _printf(const char *format, ...)
 {
-        va_list args;
-        int printed_chars = 0;
-        char c;
-        char *s;
+	int k, printed = 0, printed_chars = 0;
+	int flags, width, precision, size, buff_ind = 0;
+	va_list list;
+	char buffer[BUFF_SIZE];
 
-        va_start(args, format);
+	if (format == NULL)
+		return (-1);
 
-        while (*format != '\0')
-        {
-                if (*format == '%')
-                {
-                        format++;
-                        switch (*format)
-                        {
-                                case 'c':
-                                        c = va_arg(args, int);
-                                        putchar(c);
-                                        printed_chars++;
-                                        break;
-                                case 's':
-                                        s = va_arg(args, char *);
-                                        if (s == NULL)
-                                                s = "(null)";
-                                        while (*s != '\0')
-                                        {
-                                                putchar(*s);
-                                                s++;
-                                                printed_chars++;
-                                        }
-                                        break;
-                                case '%':
-                                        putchar('%');
-                                        printed_chars++;
-                                        break;
-                                default:
-                                        putchar('%');
-                                        putchar(*format);
-                                        printed_chars += 2;
-                                        break;
-                        }
-                }
-                else
-                {
-                        putchar(*format);
-                        printed_chars++;
-                }
-                format++;
-        }
+	va_start(list, format);
 
-        va_end(args);
+	for (k = 0; format && format[k] != '\0'; k++)
+	{
+		if (format[k] != '%')
+		{
+			buffer[buff_ind++] = format[k];
+			if (buff_ind == BUFF_SIZE)
+				print_buffer(buffer, &buff_ind);
+			/* write(1, &format[k], 1);*/
+			printed_chars++;
+		}
+		else
+		{
+			print_buffer(buffer, &buff_ind);
+			flags = get_the_flags(format, &k);
+			width = get_the_width(format, &k, list);
+			precision = get_the_precision(format, &k, list);
+			size = get_the_size(format, &k);
+			++k;
+			printed = handling_print(format, &k, list, buffer,
+				flags, width, precision, size);
+			if (printed == -1)
+				return (-1);
+			printed_chars += printed;
+		}
+	}
 
-        return printed_chars;
+	print_buffer(buffer, &buff_ind);
+
+	va_end(list);
+
+	return (printed_chars);
+}
+
+/**
+ * print_buffer - Prints the contents of the buffer if it exists
+ * @buffer: Array of chars
+ * @buff_ind: Index at which to add next char, represents the length.
+ */
+void print_buffer(char buffer[], int *buff_ind)
+{
+	if (*buff_ind > 0)
+		write(1, &buffer[0], *buff_ind);
+
+	*buff_ind = 0;
 }
