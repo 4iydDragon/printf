@@ -138,7 +138,8 @@ int printing_int(va_list types, char buffer[],
 
 	k++;
 
-	return (write_the_number(is_negative, k, buffer, flags, width, precision, size));
+	return (write_the_number(is_negative, k, buffer,
+				 flags, width, precision, size));
 }
 
 /************************* PRINTING BINARY *************************/

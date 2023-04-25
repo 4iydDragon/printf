@@ -1,6 +1,6 @@
 #include "main.h"
 
-/************************* PRINTING OF UNSIGNED NUMBER *************************/
+/******************** PRINTING OF UNSIGNED NUMBER *******************/
 /**
  * print_of_unsigned - Prints an unsigned number
  * @types: List  of arguments
@@ -12,7 +12,7 @@
  * Return: Number of chars printed.
  */
 int print_of_unsigned(va_list types, char buffer[],
-	int flags, int width, int precision, int size)
+		     int flags, int width, int precision, int size)
 {
 	int k = BUFF_SIZE - 2;
 	unsigned long int num = va_arg(types, unsigned long int);
@@ -32,7 +32,7 @@ int print_of_unsigned(va_list types, char buffer[],
 
 	k++;
 
-	return (write_the_unsigned(0, k, buffer, flags, width, precision, size));
+	return (write_the_unsgnd(0, k, buffer, flags, width, precision, size));
 }
 
 /************* PRINTING OF UNSIGNED NUMBER IN OCTAL  ****************/
@@ -74,7 +74,7 @@ int print_of_octal(va_list types, char buffer[],
 
 	k++;
 
-	return (write_the_unsigned(0, k, buffer, flags, width, precision, size));
+	return (write_the_unsgnd(0, k, buffer, flags, width, precision, size));
 }
 
 /************** PRINTING OF UNSIGNED NUMBER IN HEXADECIMAL **************/
@@ -97,7 +97,7 @@ int print_of_hexadecimal(va_list types, char buffer[],
 
 /************* PRINTING OF UNSIGNED NUMBER IN UPPER HEXADECIMAL **************/
 /**
- * print_of_hexa_upper - Prints an unsigned number in upper hexadecimal notation
+ * print_of_hexa_upper - Prints an unsigned number in upper hexadecimal
  * @types: List of arguments
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
@@ -156,5 +156,5 @@ int print_hexa_lu(va_list types, char map_to[], char buffer[],
 
 	k++;
 
-	return (write_the_unsigned(0, k, buffer, flags, width, precision, size));
+	return (write_the_unsgnd(0, k, buffer, flags, width, precision, size));
 }

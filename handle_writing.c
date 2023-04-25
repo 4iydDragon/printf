@@ -149,7 +149,7 @@ int write_the_num(int ind, char buffer[],
  *
  * Return: Number of written chars.
  */
-int write_the_unsigned(int is_negative, int ind,
+int write_the_unsgnd(int is_negative, int ind,
 	char buffer[],
 	int flags, int width, int precision, int size)
 {
