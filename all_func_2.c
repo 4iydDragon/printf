@@ -74,7 +74,7 @@ int print_of_octal(va_list types, char buffer[],
 
 	k++;
 
-	return (write_the_unsgnd(0, k, buffer, flags, width, precision, size));
+	return (write_the_unsigned(0, k, buffer, flags, width, precision, size));
 }
 
 /************** PRINTING OF UNSIGNED NUMBER IN HEXADECIMAL **************/
