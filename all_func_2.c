@@ -32,7 +32,7 @@ int print_of_unsigned(va_list types, char buffer[],
 
 	k++;
 
-	return (write_the_unsgnd(0, k, buffer, flags, width, precision, size));
+	return (write_the_unsigned(0, k, buffer, flags, width, precision, size));
 }
 
 /************* PRINTING OF UNSIGNED NUMBER IN OCTAL  ****************/
@@ -56,7 +56,7 @@ int print_of_octal(va_list types, char buffer[],
 
 	UNUSED(width);
 
-	num = convert_size_unsgnd(num, size);
+	num = convert_the_size_unsgnd(num, size);
 
 	if (num == 0)
 		buffer[k--] = '0';
